@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Day-3 Mini Projects(1 to 10)</title>
+    <style>
+        /* Simplified, beginner-friendly styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: white;
+            color: black;
+        }
+        h1 {
+            text-align: center;
+        }
+        .project-section {
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .result-area {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px dashed gray;
+            margin-top: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .todo-btn {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Mini-Projects 1-10</h1>
+    <p>All results are displayed below (except for the interactive To-Do list).</p>
+
+    <div class="project-section">
+        <h2>1. Product Catalog</h2>
+        <div id="out21" class="result-area"></div>
+    </div>
+
+    <div class="project-section">
+        <h2>2. Shopping Cart</h2>
+        <div id="out22" class="result-area"></div>
+    </div>
+
+    <div class="project-section">
+        <h2>3. Student Grades</h2>
+        <div id="out23" class="result-area"></div>
+    </div>
+
+    <div class="project-section">
+        <h2>4. To-Do List (Interactive)</h2>
+        <button class="todo-btn" onclick="todoCLI('out24')">Start To-Do List</button>
+        <div id="out24" class="result-area">Waiting for interaction...</div>
+    </div>
+
+    <div class="project-section">
+        <h2>5. Library Search</h2>
+        <div id="out25" class="result-area"></div>
+    </div>
+
+    <div class="project-section">
+        <h2>6. User Profile</h2>
+        <div id="out26" class="result-area"></div>
+    </div>
+
+    <div class="project-section">
+        <h2>7. JSON Practice</h2>
+        <div id="out27" class="result-area"></div>
+    </div>
+
+    <div class="project-section">
+        <h2>8. Blog Post</h2>
+        <div id="out28" class="result-area"></div>
+    </div>
+
+    <div class="project-section">
+        <h2>9. Image Gallery</h2>
+        <div id="out29" class="result-area"></div>
+    </div>
+
+    <div class="project-section">
+        <h2>10. Customer Reviews</h2>
+        <div id="out30" class="result-area"></div>
+    </div>
+
+    <script>
+        // Simple function to write text to the page
+        function printResult(id, text) {
+            const div = document.getElementById(id);
+            if (typeof text === 'object') {
+                div.innerText += JSON.stringify(text, null, 2) + "\n\n";
+            } else {
+                div.innerText += text + "\n";
+            }
+        }
+
+        // Run everything when page loads
+        window.onload = function() {
+            // 21. Product Catalog
+            const products = [
+                { id: 1, name: "Laptop", price: 1200, category: "Electronics" },
+                { id: 2, name: "Coffee Maker", price: 80, category: "Home" }
+            ];
+            printResult('out21', "Products List:");
+            products.forEach(p => printResult('out21', p.name + " - $" + p.price));
+            printResult('out21', "Names only: " + products.map(p => p.name));
+
+            // 22. Shopping Cart
+            let cart = [
+                { name: "Laptop", price: 1200, quantity: 1 },
+                { name: "Shoes", price: 100, quantity: 2 }
+            ];
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            printResult('out22', "Cart Items:");
+            printResult('out22', cart);
+            printResult('out22', "Total Price: $" + total);
+
+            // 23. Student Grades
+            const students = [{ name: "Alice", grades: [80, 90] }, { name: "Bob", grades: [70, 60] }];
+            const avgs = students.map(s => ({ name: s.name, avg: s.grades.reduce((a,b)=>a+b)/s.grades.length }));
+            printResult('out23', "Average Grades:");
+            printResult('out23', avgs);
+
+            // 25. Library Search
+            const library = [{ title: "JS Basics", author: "John" }, { title: "HTML Guide", author: "Jane" }];
+            printResult('out25', "Search for 'JS':");
+            printResult('out25', library.filter(b => b.title.includes("JS")));
+
+            // 26. User Profile
+            const user = { firstName: "John", lastName: "Smith", address: { city: "New York" } };
+            user.email = "john@example.com";
+            printResult('out26', "Name: " + user.firstName + " " + user.lastName);
+            printResult('out26', "City: " + user.address.city);
+            printResult('out26', "Updated Profile:");
+            printResult('out26', user);
+
+            // 27. JSON
+            const data = { id: 10, item: "Apple" };
+            const myJson = JSON.stringify(data);
+            printResult('out27', "Object to JSON String: " + myJson);
+            printResult('out27', "Type is: " + typeof myJson);
+
+            // 28. Blog Post
+            const post = { title: "Hello World", tags: ["news", "tech"], comments: [] };
+            post.addComment = function(txt) { this.comments.push(txt); };
+            post.addComment("Nice post!");
+            printResult('out28', "Post Tags: " + post.tags.join(", "));
+            printResult('out28', "Post Data:");
+            printResult('out28', post);
+
+            // 29. Gallery
+            const images = [{ src: "pic1.jpg", tags: ["nature"] }, { src: "pic2.jpg", tags: ["city"] }];
+            printResult('out29', "Nature Images:");
+            printResult('out29', images.filter(i => i.tags.includes("nature")));
+
+            // 30. Reviews
+            const reviews = [{ rating: 5, text: "Good" }, { rating: 3, text: "Average" }];
+            const avgRating = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+            printResult('out30', "Average Rating: " + avgRating);
+        };
+
+        // 24. To-Do CLI
+        function todoCLI(id) {
+            const div = document.getElementById(id);
+            div.innerText = ""; // Clear area
+            let list = [];
+            let cmd = "";
+            while (cmd !== "quit") {
+                cmd = prompt("Enter command (add, list, quit):");
+                if (cmd === "add") {
+                    let t = prompt("Task name:");
+                    if (t) list.push(t);
+                } else if (cmd === "list") {
+                    printResult(id, "--- Your List ---");
+                    list.forEach((t, i) => printResult(id, (i+1) + ". " + t));
+                }
+            }
+            printResult(id, "Closed.");
+        }
+    </script>
+</body>
+</html>

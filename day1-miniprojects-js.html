@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Day-1 Mini Projects (1-10)</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; max-width: 800px; margin: auto; }
+        section { margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        h1 { color: #2c3e50; }
+        h2 { color: #d35400; font-size: 1.2rem; margin-top: 0; margin-bottom: 8px; }
+        p { margin: 0 0 10px 0; font-size: 0.95rem; color: #444; }
+        button { padding: 10px 20px; cursor: pointer; background: #e67e22; color: white; border: none; border-radius: 4px; font-weight: bold; }
+        button:hover { background: #d35400; }
+        .info { font-style: italic; color: #7f8c8d; margin-bottom: 10px; border-left: 4px solid #e67e22; padding-left: 10px; }
+        code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>JS Day-1 Mini Projects 1 to 10</h1>
+    <p class="info"><strong>Note:</strong> Open the browser console (F12) to see results. These projects focus on Variables, Operators, and Types.</p>
+
+    <section>
+        <h2>1. Simple Variable Showcase</h2>
+        <p><strong>Instructions:</strong> Declares <code>var</code>, <code>let</code>, and <code>const</code> variables and logs their types. Check the script comments regarding constant reassignment.</p>
+        <button onclick="variableShowcase()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>2. Basic Arithmetic Calculator</h2>
+        <p><strong>Instructions:</strong> Performs addition, subtraction, multiplication, division, and modulo on two numbers.</p>
+        <button onclick="arithmeticCalc()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>3. Name and Age Greeter</h2>
+        <p><strong>Instructions:</strong> Uses <code>prompt()</code> for name and age, then displays an <code>alert()</code> and logs details.</p>
+        <button onclick="nameAgeGreeter()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>4. Type Comparison Challenge</h2>
+        <p><strong>Instructions:</strong> Compares string "10" vs number 10 using <code>==</code> and <code>===</code>.</p>
+        <button onclick="comparisonChallenge()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>5. Logical Operator Tester</h2>
+        <p><strong>Instructions:</strong> Evaluates boolean logic using <code>&&</code> (AND), <code>||</code> (OR), and <code>!</code> (NOT).</p>
+        <button onclick="logicalTester()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>6. User Confirmation Game</h2>
+        <p><strong>Instructions:</strong> Uses <code>confirm()</code> to ask a question and logs a response based on your choice.</p>
+        <button onclick="confirmationGame()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>7. Counter with Increment/Decrement</h2>
+        <p><strong>Instructions:</strong> Demonstrates <code>++</code> and <code>--</code>, and the difference between prefix and postfix increments.</p>
+        <button onclick="counterDemo()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>8. String and Number Concatenation</h2>
+        <p><strong>Instructions:</strong> Combines strings and numbers using <code>+</code> and demonstrates implicit coercion with subtraction.</p>
+        <button onclick="concatenationDemo()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>9. Basic Type Conversion</h2>
+        <p><strong>Instructions:</strong> Explicitly converts values to <code>Number</code>, <code>String</code>, and <code>Boolean</code>.</p>
+        <button onclick="conversionPractice()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>10. console.log() Debugging</h2>
+        <p><strong>Instructions:</strong> Simulates a script execution flow by tracking variable states at multiple points.</p>
+        <button onclick="debuggingPractice()">Run & Check Console</button>
+    </section>
+
+    <script>
+        // 11. Simple Variable Showcase
+        function variableShowcase() {
+            var myNumber = 100;
+            let myString = "JavaScript";
+            const myBool = true;
+
+            console.log("var value:", myNumber, "| type:", typeof myNumber);
+            console.log("let value:", myString, "| type:", typeof myString);
+            console.log("const value:", myBool, "| type:", typeof myBool);
+
+            console.log("Note: Attempting to reassign a const (e.g., myBool = false) will throw a TypeError in the console.");
+            // myBool = false; // Uncommenting this would cause an error!
+        }
+
+        // 12. Basic Arithmetic Calculator
+        function arithmeticCalc() {
+            let a = 15;
+            let b = 4;
+            console.log("Numbers used: 15 and 4");
+            console.log("Addition:", a + b);
+            console.log("Subtraction:", a - b);
+            console.log("Multiplication:", a * b);
+            console.log("Division:", a / b);
+            console.log("Modulo (Remainder):", a % b);
+        }
+
+        // 13. Name and Age Greeter
+        function nameAgeGreeter() {
+            const name = prompt("What is your name?");
+            const age = prompt("How old are you?");
+            alert(`Hello, ${name}! You are ${age} years old.`);
+            console.log("Collected Name:", name);
+            console.log("Collected Age:", age);
+        }
+
+        // 14. Type Comparison Challenge
+        function comparisonChallenge() {
+            let numString = "10";
+            let numNumber = 10;
+
+            // Loose equality checks value after type conversion
+            console.log('numString == numNumber:', numString == numNumber); // true
+            // Strict equality checks value AND type
+            console.log('numString === numNumber:', numString === numNumber); // false
+
+            console.log('0 == false:', 0 == false); // true (0 is falsy)
+            console.log('0 === false:', 0 === false); // false (number vs boolean)
+        }
+
+        // 15. Logical Operator Tester
+        function logicalTester() {
+            let isLoggedIn = true;
+            let isAdmin = false;
+
+            console.log("isLoggedIn && isAdmin:", isLoggedIn && isAdmin); // false (both must be true)
+            console.log("isLoggedIn || isAdmin:", isLoggedIn || isAdmin); // true (at least one is true)
+            console.log("!isLoggedIn:", !isLoggedIn); // false (flips true to false)
+        }
+
+        // 16. User Confirmation Game
+        function confirmationGame() {
+            const response = confirm("Do you like coding?");
+            if (response) {
+                console.log("Great! Keep coding!");
+            } else {
+                console.log("Maybe try more practice!");
+            }
+        }
+
+        // 17. Simple Counter
+        function counterDemo() {
+            let count = 0;
+            console.log("Initial count:", count);
+            
+            count++;
+            console.log("After increment (++):", count);
+            
+            count--;
+            console.log("After decrement (--):", count);
+
+            let x = 5;
+            console.log("Postfix (x++): logs original then increments ->", x++);
+            console.log("Value now:", x);
+            
+            let y = 5;
+            console.log("Prefix (++y): increments then logs new value ->", ++y);
+        }
+
+        // 18. String and Number Concatenation
+        function concatenationDemo() {
+            const city = "London";
+            const temperature = 25;
+            const message = "The temperature in " + city + " is " + temperature + " degrees.";
+            console.log(message);
+
+            // Coercion
+            console.log('Implicit Coercion (100 - "20"):', 100 - "20"); // 80 (string converted to number)
+        }
+
+        // 19. Basic Type Conversion
+        function conversionPractice() {
+            // String to Number
+            let strNum = "42";
+            let convertedNum = Number(strNum);
+            console.log("Converted '42':", convertedNum, "| type:", typeof convertedNum);
+
+            // Number to String
+            let num = 123;
+            let convertedStr = String(num);
+            console.log("Converted 123:", convertedStr, "| type:", typeof convertedStr);
+
+            // Booleans
+            console.log('Boolean(1):', Boolean(1));
+            console.log('Boolean(0):', Boolean(0));
+            console.log('Boolean(""):', Boolean(""));
+            console.log('Boolean("hello"):', Boolean("hello"));
+            console.log('Boolean(null):', Boolean(null));
+            console.log('Boolean(undefined):', Boolean(undefined));
+        }
+
+        // 20. Debugging Practice
+        function debuggingPractice() {
+            console.log("Step 1: Initializing variables...");
+            let score = 50;
+            console.log("Current Score:", score);
+
+            console.log("Step 2: Performing bonus operation (+20)...");
+            score += 20;
+            console.log("Score after operation:", score);
+
+            console.log("Step 3: Checking if passed (>= 60)...");
+            let hasPassed = score >= 60;
+            console.log("Comparison Result (hasPassed):", hasPassed);
+
+            if (hasPassed) {
+                console.log("Step 4: Flow - User has passed the test.");
+            } else {
+                console.log("Step 4: Flow - User has failed the test.");
+            }
+        }
+    </script>
+</body>
+</html>

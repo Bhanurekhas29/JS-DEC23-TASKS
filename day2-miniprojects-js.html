@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Day-2 Mini Projects (1-10)</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; max-width: 800px; margin: auto; }
+        section { margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        h1 { color: #2c3e50; }
+        h2 { color: #34495e; font-size: 1.2rem; margin-top: 0; margin-bottom: 8px; }
+        p { margin: 0 0 10px 0; font-size: 0.95rem; color: #444; }
+        button { padding: 10px 20px; cursor: pointer; background: #3498db; color: white; border: none; border-radius: 4px; font-weight: bold; }
+        button:hover { background: #2980b9; }
+        .info { font-style: italic; color: #7f8c8d; margin-bottom: 10px; border-left: 4px solid #3498db; padding-left: 10px; }
+        code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>JS Day-2 Mini Projects 1 to 10</h1>
+    <p class="info"><strong>Note:</strong> Open the browser console (Press F12 or Right-Click > Inspect) to view the output before running any project.</p>
+
+    <section>
+        <h2>1. Age Classifier</h2>
+        <p><strong>Instructions:</strong> Enter your age as a number. The console will display "Child", "Teenager", or "Adult".</p>
+        <button onclick="ageClassify()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>2. Simple Number Guesser</h2>
+        <p><strong>Instructions:</strong> Try to guess the hidden number (Hint: it's 7). You can keep guessing until you get it right.</p>
+        <button onclick="numberGuesser()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>3. Basic Calculator Function</h2>
+        <p><strong>Instructions:</strong> Enter two numbers and an operation symbol (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>) when prompted.</p>
+        <button onclick="runCalculator()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>4. Countdown Timer</h2>
+        <p><strong>Instructions:</strong> No input needed. Watch the console for a countdown from 10 down to "Lift off!".</p>
+        <button onclick="countdownTimer()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>5. Shopping List Display</h2>
+        <p><strong>Instructions:</strong> No input needed. This iterates through an array and logs each shopping item.</p>
+        <button onclick="displayShoppingList()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>6. User Profile Lister</h2>
+        <p><strong>Instructions:</strong> No input needed. This uses a <code>for...in</code> loop to display properties of a user object.</p>
+        <button onclick="listUserProfile()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>7. Skip Even Numbers</h2>
+        <p><strong>Instructions:</strong> No input needed. This logs numbers from 1 to 10 but skips all even numbers using <code>continue</code>.</p>
+        <button onclick="skipEvens()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>8. Limited Login Attempts</h2>
+        <p><strong>Instructions:</strong> Enter the password (Hint: it is <code>secret</code>). You have 3 attempts before the account locks.</p>
+        <button onclick="limitedLogin()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>9. Vowel Counter Function</h2>
+        <p><strong>Instructions:</strong> Enter a word or sentence. The console will tell you how many vowels (a, e, i, o, u) it contains.</p>
+        <button onclick="runVowelCounter()">Run & Check Console</button>
+    </section>
+
+    <section>
+        <h2>10. Ternary Status Checker</h2>
+        <p><strong>Instructions:</strong> This uses an arrow function and a ternary operator to log "Active" or "Inactive" status.</p>
+        <button onclick="runStatusChecker()">Run & Check Console</button>
+    </section>
+
+    <script>
+        // 1. Age Classifier
+        function ageClassify() {
+            const userInput = prompt("Please enter your age:");
+            const age = Number(userInput);
+            if (isNaN(age) || userInput === null || userInput.trim() === "") {
+                console.log("Invalid input. Please enter a number.");
+            } else if (age < 13) {
+                console.log("Category: Child");
+            } else if (age >= 13 && age <= 19) {
+                console.log("Category: Teenager");
+            } else {
+                console.log("Category: Adult");
+            }
+        }
+
+        // 2. Simple Number Guesser
+        function numberGuesser() {
+            const correctNumber = 7;
+            while (true) {
+                let userInput = prompt("Guess a number between 1 and 10:");
+                if (userInput === null) break; 
+                let guess = Number(userInput);
+                if (guess === correctNumber) {
+                    console.log("Congratulations! You guessed it!");
+                    break;
+                } else {
+                    console.log("Wrong guess, try again!");
+                }
+            }
+        }
+
+        // 3. Basic Calculator Function
+        function calculate(num1, num2, operation) {
+            switch (operation) {
+                case "+": return num1 + num2;
+                case "-": return num1 - num2;
+                case "*": return num1 * num2;
+                case "/": return num2 !== 0 ? num1 / num2 : "Error (Divide by zero)";
+                default: return "Invalid operation";
+            }
+        }
+        function runCalculator() {
+            const n1 = Number(prompt("Enter the first number:"));
+            const n2 = Number(prompt("Enter the second number:"));
+            const op = prompt("Enter operation symbol (+, -, *, /):");
+            
+            if (isNaN(n1) || isNaN(n2) || op === null) {
+                console.log("Invalid input provided.");
+            } else {
+                const result = calculate(n1, n2, op);
+                console.log(`Result: ${n1} ${op} ${n2} = ${result}`);
+            }
+        }
+
+        // 4. Countdown Timer
+        function countdownTimer() {
+            console.log("--- Starting Countdown ---");
+            for (let i = 10; i >= 1; i--) {
+                console.log(i);
+            }
+            console.log("Lift off!");
+        }
+
+        // 5. Shopping List Display
+        function displayShoppingList() {
+            console.log("--- Shopping List ---");
+            const shoppingList = ["Milk", "Eggs", "Bread", "Butter", "Apples"];
+            for (const item of shoppingList) {
+                console.log("Item: " + item);
+            }
+        }
+
+        // 6. User Profile Lister
+        function listUserProfile() {
+            console.log("--- User Profile Details ---");
+            const userProfile = {
+                name: "Alice",
+                email: "alice@example.com",
+                age: 25,
+                city: "New York"
+            };
+            for (const key in userProfile) {
+                console.log(`${key}: ${userProfile[key]}`);
+            }
+        }
+
+        // 7. Skip Even Numbers
+        function skipEvens() {
+            console.log("--- Odd Numbers (1-10) ---");
+            for (let i = 1; i <= 10; i++) {
+                if (i % 2 === 0) {
+                    continue;
+                }
+                console.log(i);
+            }
+        }
+
+        // 8. Limited Login Attempts
+        function limitedLogin() {
+            const maxAttempts = 3;
+            const correctPassword = "secret";
+            let attemptsMade = 0;
+            let loginSuccess = false;
+
+            while (attemptsMade < maxAttempts) {
+                let passwordGuess = prompt(`Attempt ${attemptsMade + 1}/${maxAttempts}. Enter Password:`);
+                if (passwordGuess === null) break;
+                attemptsMade++;
+                if (passwordGuess === correctPassword) {
+                    console.log("Login Successful!");
+                    loginSuccess = true;
+                    break;
+                } else {
+                    console.log("Incorrect password. Attempts left: " + (maxAttempts - attemptsMade));
+                }
+            }
+            if (!loginSuccess && attemptsMade === maxAttempts) {
+                console.log("Too many failed attempts. Account locked.");
+            }
+        }
+
+        // 9. Vowel Counter Function
+        function countVowels(text) {
+            const lowerText = text.toLowerCase();
+            let vowelCount = 0;
+            for (const char of lowerText) {
+                if ("aeiou".includes(char)) {
+                    vowelCount++;
+                }
+            }
+            return vowelCount;
+        }
+        function runVowelCounter() {
+            const userInput = prompt("Enter text to count vowels:");
+            if (userInput !== null) {
+                console.log(`Input: "${userInput}"`);
+                console.log(`Vowel Count:`, countVowels(userInput));
+            }
+        }
+
+        // 10. Ternary Status Checker Function
+        const getStatus = (isActive) => isActive ? "Active" : "Inactive";
+        
+        function runStatusChecker() {
+            console.log("--- Status Check ---");
+            console.log("Input true -> Status:", getStatus(true));
+            console.log("Input false -> Status:", getStatus(false));
+        }
+    </script>
+</body>
+</html>
