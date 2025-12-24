@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Selection Lab</title>
+    <style>
+        /* Minimal styles for visibility */
+        .active { border: 2px solid green; }
+        .selected { background-color: yellow; }
+        .hidden { display: none; }
+        .highlight { background-color: yellow; }
+        
+        .hover-effect { 
+            border: 5px solid orange; 
+            transform: scale(1.05);
+            transition: all 0.2s;
+        }
+
+        .event-section {
+            margin-top: 20px;
+            padding: 15px;
+            border-top: 2px dashed #ccc;
+        }
+
+        /* Bubbling Task Styles */
+        #grandparent { padding: 30px; background: #fee2e2; border: 1px solid red; }
+        #parent { padding: 30px; background: #fef3c7; border: 1px solid orange; }
+        #child { padding: 30px; background: #dcfce7; border: 1px solid green; cursor: pointer; }
+        
+        #delegationList { background: #f1f5f9; padding: 10px; cursor: pointer; }
+        #delegationList li { margin: 5px; padding: 5px; background: white; border: 1px solid #cbd5e1; }
+        
+        img { display: block; margin: 10px 0; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+    <div>
+        <section>
+            <h1 id="mainHeading">Hello World Heading</h1>
+            
+            <div class="card">
+                <p id="targetParagraph">This is the <strong>first card</strong> inner content.</p>
+            </div>
+
+            <ul id="myList">
+                <li class="item" id="itemToRemove">Item 1 (Reference for Removal)</li>
+                <li class="item" id="referenceItem">Item 2 (Reference for Insert Before)</li>
+                <li class="item">Item 3</li>
+            </ul>
+
+            <div class="event-section">
+                <h3>Advanced Event Section (46-50)</h3>
+                <button id="targetLogBtn">Task 46: Log My Target</button>
+                <ul id="delegationList">
+                    <li>Apple</li>
+                    <li>Banana</li>
+                    <li>Cherry</li>
+                </ul>
+                <form id="preventForm" style="margin: 10px 0;">
+                    <input type="text" placeholder="I won't refresh">
+                    <button type="submit">Submit</button>
+                </form>
+                <div>
+                    <a id="preventLink" href="https://google.com">Task 49: Blocked Link</a>
+                </div>
+                <div id="grandparent">
+                    Grandparent
+                    <div id="parent">
+                        Parent
+                        <div id="child">Child (Click for Bubbling)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-section">
+                <h3>Basic Events (37-45)</h3>
+                <button id="clickMeBtn">Task 37: Click Me</button>
+                <div id="clickableDiv" style="width:100px; height:50px; border:1px solid black; margin:10px 0;">Task 38</div>
+                <img id="clickableImg" src="https://picsum.photos/id/237/100/100" alt="Placeholder">
+                <div id="hoverDiv" style="padding:10px; background:#eee;">Task 40: Hover</div>
+                <input type="text" id="eventInput" placeholder="Task 42/43">
+            </div>
+
+            <div id="statusMessage">Initial Status</div>
+            <div id="userInputDisplay">Some user input text</div>
+            <div id="contentArea"></div>
+            <div id="linkContainer"></div>
+            <div id="readOnlyText">Sample Read Only Text</div>
+            <div id="richTextSection"><p>Rich <strong>Text</strong> Content</p></div>
+            
+            <div id="styleBox1" style="width:50px; height:20px; border:1px solid #000;">Box 1</div>
+            <div id="styleBox2">Box 2</div>
+            <div id="styleBox3">Box 3</div>
+            <div id="classBox">Class Box</div>
+            <p class="highlight" id="highlightToRemove">Highlight to remove</p>
+            <div id="visibilityCheck" class="hidden">Hidden Div</div>
+
+            <img id="mainImage" src="https://picsum.photos/id/1/100/100" alt="A beautiful landscape" width="100">
+            <button id="submitBtn" disabled>Submit (Disabled)</button>
+        </section>
+    </div>
+
+    <script>
+        window.onload = function() {
+            console.log("--- Task 44: Page fully loaded ---");
+
+            // --- Selection (1-10) ---
+            const mainHeading = document.getElementById("mainHeading");
+            console.log("1. mainHeading textContent:", mainHeading?.textContent);
+
+            const firstCard = document.getElementsByClassName("card")[0];
+            console.log("2. firstCard innerHTML:", firstCard?.innerHTML.trim());
+
+            const allItems = document.getElementsByClassName("item");
+            console.log("3. .item count:", allItems.length);
+
+            const allPs = document.getElementsByTagName("p");
+            console.log("4. <p> count:", allPs.length);
+
+            const uniqueBtn = document.querySelector("#uniqueButton");
+            console.log("5. uniqueButton:", uniqueBtn);
+
+            // --- Updates (11-17) ---
+            const statusMsg = document.getElementById("statusMessage");
+            if (statusMsg) {
+                statusMsg.textContent = "Operation Complete!";
+                console.log("11. statusMessage text updated:", statusMsg.textContent);
+            }
+
+            const targetPara = document.getElementById("targetParagraph");
+            if (targetPara) {
+                targetPara.textContent = "New paragraph text.";
+                console.log("12. targetParagraph updated:", targetPara.textContent);
+            }
+
+            const userInputDisp = document.getElementById("userInputDisplay");
+            if (userInputDisp) {
+                userInputDisp.textContent = "";
+                console.log("13. userInputDisplay cleared.");
+            }
+
+            const contentArea = document.getElementById("contentArea");
+            if (contentArea) {
+                contentArea.innerHTML = "<strong>Important:</strong> Please review.";
+                console.log("14. contentArea HTML set.");
+            }
+
+            const linkContainer = document.getElementById("linkContainer");
+            if (linkContainer) {
+                linkContainer.innerHTML = '<a href="#">Visit Site</a>';
+                console.log("15. linkContainer HTML set.");
+            }
+
+            const readOnly = document.getElementById("readOnlyText");
+            console.log("16. readOnlyText content:", readOnly?.textContent);
+
+            const richSection = document.getElementById("richTextSection");
+            console.log("17. richTextSection HTML:", richSection?.innerHTML);
+
+            // --- Attributes & Styles (18-27) ---
+            const img = document.getElementById("mainImage");
+            if (img) {
+                img.setAttribute('src', 'https://picsum.photos/id/10/100/100');
+                console.log("18. mainImage src updated.");
+                console.log("19. mainImage alt attribute:", img.getAttribute('alt'));
+            }
+
+            const submitBtn = document.getElementById("submitBtn");
+            if (submitBtn) {
+                submitBtn.removeAttribute('disabled');
+                console.log("20. submitBtn 'disabled' attribute removed.");
+            }
+
+            const box1 = document.getElementById("styleBox1");
+            if (box1) {
+                box1.style.backgroundColor = "lightblue";
+                console.log("21. Box 1 backgroundColor set to lightblue.");
+            }
+
+            const box2 = document.getElementById("styleBox2");
+            if (box2) {
+                box2.style.fontSize = "20px";
+                console.log("22. Box 2 fontSize set to 20px.");
+            }
+
+            const box3 = document.getElementById("styleBox3");
+            if (box3) {
+                box3.style.color = "red";
+                box3.style.fontWeight = "bold";
+                console.log("23. Box 3 color and fontWeight set.");
+            }
+
+            const classBox = document.getElementById("classBox");
+            if (classBox) {
+                classBox.classList.add('active');
+                console.log("24. 'active' class added to classBox.");
+            }
+
+            const highlightEl = document.getElementById("highlightToRemove");
+            if (highlightEl) {
+                highlightEl.classList.remove('highlight');
+                console.log("25. 'highlight' class removed from highlightToRemove.");
+            }
+
+            const toggleBtn = document.getElementById("clickMeBtn");
+            if (toggleBtn) {
+                console.log("26. Before toggle, contains 'selected':", toggleBtn.classList.contains('selected'));
+                toggleBtn.classList.toggle('selected');
+                console.log("26. After toggle, contains 'selected':", toggleBtn.classList.contains('selected'));
+            }
+
+            const hiddenDiv = document.getElementById("visibilityCheck");
+            console.log("27. hiddenDiv contains 'hidden' class:", hiddenDiv?.classList.contains('hidden'));
+
+            // --- DOM Creation (28-36) ---
+            const newDiv = document.createElement('div');
+            console.log("28. New div created:", newDiv);
+            newDiv.textContent = "Dynamically created!";
+            console.log("29. New div textContent set.");
+            document.body.appendChild(newDiv);
+            console.log("30. New div appended to body.");
+
+            const newLi = document.createElement('li');
+            newLi.textContent = "New Task";
+            console.log("31. New LI created.");
+            const list = document.getElementById("myList");
+            if (list) {
+                list.appendChild(newLi);
+                console.log("32. New LI appended to UL.");
+                
+                const prependLi = document.createElement('li');
+                prependLi.textContent = "I am first";
+                list.prepend(prependLi);
+                console.log("33. LI prepended to UL.");
+
+                const midLi = document.createElement('li');
+                midLi.textContent = "Inserted Mid";
+                const ref = document.getElementById("referenceItem");
+                list.insertBefore(midLi, ref);
+                console.log("34. LI inserted before reference.");
+
+                const toRem = document.getElementById("itemToRemove");
+                list.removeChild(toRem);
+                console.log("35. Child removed by reference.");
+
+                list.removeChild(list.firstElementChild);
+                console.log("36. First child of list removed.");
+            }
+
+            // --- Events (37-50) ---
+            const btn37 = document.getElementById("clickMeBtn");
+            btn37?.addEventListener("click", () => console.log("37. Button clicked!"));
+
+            const div38 = document.getElementById("clickableDiv");
+            div38?.addEventListener("click", () => {
+                div38.style.backgroundColor = "yellow";
+                console.log("38. Div backgroundColor changed to yellow.");
+            });
+
+            const img39 = document.getElementById("clickableImg");
+            img39?.addEventListener("click", () => console.log("39. Image clicked!"));
+
+            const hDiv = document.getElementById("hoverDiv");
+            hDiv?.addEventListener("mouseover", () => {
+                hDiv.classList.add("hover-effect");
+                console.log("40. Mouse over hoverDiv: Class added.");
+            });
+            hDiv?.addEventListener("mouseout", () => {
+                hDiv.classList.remove("hover-effect");
+                console.log("41. Mouse out hoverDiv: Class removed.");
+            });
+
+            const inp = document.getElementById("eventInput");
+            inp?.addEventListener("keydown", (e) => console.log("42. Keydown:", e.key));
+            inp?.addEventListener("keyup", (e) => console.log("43. Keyup value:", e.target.value));
+
+            const targetLogBtn = document.getElementById("targetLogBtn");
+            targetLogBtn?.addEventListener("click", (e) => console.log("46. event.target:", e.target));
+
+            const dList = document.getElementById("delegationList");
+            dList?.addEventListener("click", (e) => {
+                if(e.target.tagName === 'LI') console.log("47. Delegated click on:", e.target.textContent);
+            });
+
+            const pForm = document.getElementById("preventForm");
+            pForm?.addEventListener("submit", (e) => {
+                e.preventDefault();
+                console.log("48. Form submit prevented! Processed client-side.");
+            });
+
+            const pLink = document.getElementById("preventLink");
+            pLink?.addEventListener("click", (e) => {
+                e.preventDefault();
+                console.log("49. Link click blocked by preventDefault().");
+            });
+
+            const gp = document.getElementById("grandparent");
+            const p = document.getElementById("parent");
+            const c = document.getElementById("child");
+            if (gp && p && c) {
+                gp.addEventListener("click", () => console.log("50. Grandparent (Bubbling)"));
+                p.addEventListener("click", () => console.log("50. Parent (Bubbling)"));
+                c.addEventListener("click", () => console.log("50. Child (Bubbling)"));
+            }
+        };
+    </script>
+</body>
+</html>

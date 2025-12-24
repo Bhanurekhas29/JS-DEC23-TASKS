@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3 JS Prompts</title>
+</head>
+<body>
+    
+    <h1>Kindly Check Inspect window for the output</h1>
+
+    <script>
+        console.log("---------- 1. ARRAY BASICS: CREATION & ACCESS -------------");
+
+        /**
+         * 1.Empty Array: Declare an empty array named myList. Log it. 
+         */
+        const myList = [];
+        console.log("1. Empty Array named myList ->");
+        console.log(myList);
+
+        /**
+         * 2. Fruit Array: Create an array fruits with "apple", "banana", "cherry". Log it. 
+         */
+        const fruits = ["apple","banana","cherry"];
+        console.log("2. Fruit Array ->" + fruits);
+
+        /**
+         * 3. First Fruit: Access and log the first element of fruits. 
+         */
+        let firstFruit = fruits[0];
+        console.log("3. First fruit from the array is ->"+ firstFruit);
+
+        /**
+         * 4. Last Fruit: Access and log the last element of fruits using length.       
+         */
+        let lastFruit = fruits[fruits.length-1]
+        console.log("4. Last fruit using length -> "+ lastFruit );
+
+        /**
+         * 5.Specific Index: Access and log the element at index 1 of fruits. 
+         */
+        console.log("5. The fruit at index 1 in the array is ->" + fruits[1]);
+
+        /**
+         * 6. Undefined Access: Try to access an index outside the array's bounds (e.g., fruits[10]). Log the result.
+         */
+        console.log("6. fruits[10] is ->"+ fruits[10]);
+
+        /**
+         * 7. Length Check: Log the length of your fruits array. 
+         */
+        console.log("7. Fruit array length is ->"+ fruits.length);
+
+        console.log("---------- 2. ARRAY BASICS: MODIFICATION ---------------");
+
+        /**
+         * 8. Update Element: Change the second fruit to "grape".    
+         */
+        fruits[1] = "grape";
+        console.log("8. Updated fruits:", fruits);
+
+        /**
+         * 9. Add to End (push): Add "mango" to the end.         
+         */
+        fruits.push("mango");
+        console.log("9. After push:", fruits);
+
+        /**
+         * 10. Remove from End (pop): Remove and log the last element.
+         */
+        const removedLast = fruits.pop();
+        console.log("10. Removed element (pop):", removedLast);
+        console.log("    Fruits after pop:", fruits);
+
+        /**
+         * 11. Add to Beginning (unshift): Add "kiwi" to the beginning.         
+         */
+        fruits.unshift("kiwi");
+        console.log("11. After unshift:", fruits);
+
+        /**
+         * 12. Remove from Beginning (shift): Remove and log the first element.
+         */
+        const removedFirst = fruits.shift();
+        console.log("12. Removed element (shift):", removedFirst);
+        console.log("    Fruits after shift:", fruits);
+
+        /**
+         * 13. Insert with splice: Insert "orange" at index 2 without removing elements.
+         */
+        fruits.splice(2, 0, "orange");
+        console.log("13. After splice insert at index 2:", fruits);
+
+        /**
+         * 14. Remove with splice: Remove 1 element starting at index 3.
+         */
+        fruits.splice(3, 1);
+        console.log("14. After splice remove at index 3:", fruits);
+
+        /**
+         * 15. Replace with splice: Replace index 0 with "pineapple".
+         */
+        fruits.splice(0, 1, "pineapple");
+        console.log("15. After splice replace at index 0:", fruits);
+
+        console.log("---------- 3. ARRAY BASICS: SEARCHING & SUBSETS-------------");
+
+        /**
+         * 16. indexOf Check: Find and log the index of "banana".
+         */
+        const bananaIndex = fruits.indexOf("banana");
+        console.log("16. Index of 'banana':", bananaIndex);
+
+        /**
+         * 17. indexOf Not Found: Find and log the index of "watermelon".
+         * Returns -1 if not found.
+         */
+        const watermelonIndex = fruits.indexOf("watermelon");
+        console.log("17. Index of 'watermelon':", watermelonIndex);
+
+        /**
+         * 18. includes Check: Log true/false if fruits includes "cherry".
+         */
+        const hasCherry = fruits.includes("cherry");
+        console.log("18. Does fruits include 'cherry'?", hasCherry);
+
+        /**
+         * 19. includes Not Found: Log true/false if fruits includes "grapefruit".
+         */
+        const hasGrapefruit = fruits.includes("grapefruit");
+        console.log("19. Does fruits include 'grapefruit'?", hasGrapefruit);
+
+        /**
+         * 20. slice Subset: Create elements from index 1 to 3 (exclusive).
+         */
+        const someFruits = fruits.slice(1, 3);
+        console.log("20. Subset (index 1 to 3):", someFruits);
+        console.log("    Original fruits remains:", fruits);
+
+        /**
+         * 21. slice All: Create a copy of the entire array.
+         */
+        const fruitsCopy = fruits.slice();
+        console.log("21. Copy of fruits:", fruitsCopy);
+
+        console.log("---------- 4. HIGHER ORDER ARRAY METHODS FOREACH -------------");
+        /**
+         * 22. Log Each: Use forEach to log each fruit.
+         */
+        console.log("22. Logging each fruit:");
+        fruits.forEach(fruit => console.log(fruit));
+
+        /**
+         * 23. Indexed Log: Log each fruit with its index.
+         */
+        console.log("23. Indexed log:");
+        fruits.forEach((fruit, index) => console.log(`${index}: ${fruit}`));
+
+        /**
+         * 24. Capitalize & Log: Log each fruit in uppercase.
+         */
+        console.log("24. Uppercase log:");
+        fruits.forEach(fruit => console.log(fruit.toUpperCase()));
+
+        /**
+         * 25. Simple Sum (forEach): Sum elements of a numeric array.
+         */
+        const nums = [1, 2, 3, 4, 5];
+        let sum = 0;
+        nums.forEach(num => {
+        sum += num;
+        });
+        console.log("25. Sum of [1, 2, 3, 4, 5] is:", sum);
+
+        console.log("------ 5. Higher-Order Array Methods (map) ---------");
+
+        /**
+         * 26. Double Numbers: Create a new array with each number doubled using map.
+         */
+        const doubledNums = nums.map(num => num * 2);
+        console.log("26. Doubled numbers:", doubledNums);
+
+        /**
+         * 27. String Lengths: Create an array of lengths of each fruit name.
+         */
+        const fruitLengths = fruits.map(fruit => fruit.length);
+        console.log("27. Fruit name lengths:", fruitLengths);
+
+        /**
+         * 28. Object IDs: Extract IDs from a list of user objects.
+         */
+        const users = [
+        { id: 1, name: "A" },
+        { id: 2, name: "B" }
+        ];
+        const userIds = users.map(user => user.id);
+        console.log("28. User IDs:", userIds);
+
+        /**
+         * 29. Formatted Names: Create formatted strings from user objects.
+         */
+        const formattedNames = users.map(user => `User: ${user.name} (ID: ${user.id})`);
+        console.log("29. Formatted user strings:", formattedNames);
+
+        console.log("--------- 6. Higher-Order Array Methods (filter) ----------");
+
+        /**
+         * 30. Even Numbers: Filter nums for only even values.
+         */
+        const evenNums = nums.filter(num => num % 2 === 0);
+        console.log("30. Even numbers:", evenNums);
+
+        /**
+         * 31. Long Fruits: Filter fruits with names longer than 5 characters.
+         */
+        const longFruits = fruits.filter(fruit => fruit.length > 5);
+        console.log("31. Fruits with > 5 chars:", longFruits);
+
+        /**
+         * 32. Active Users: Filter for users where isActive is true.
+         */
+        const activeUsers = users.filter(user => user.isActive);
+        console.log("32. Active users:", activeUsers);
+
+        /**
+         * 33. Numbers Above 3: Filter nums for values greater than 3.
+         */
+        const numsAbove3 = nums.filter(num => num > 3);
+        console.log("33. Numbers > 3:", numsAbove3);
+
+        console.log("----------- 7. Higher-Order Array Methods (reduce) ------------------");
+        /**
+         * 34. Total Sum: Use reduce on nums to calculate the total sum.
+         */
+        const totalSum = nums.reduce((acc, curr) => acc + curr, 0);
+        console.log("34. Total sum using reduce:", totalSum);
+
+        /**
+         * 35. Concatenate Strings: Use reduce to join fruits with commas.
+         */
+        const fruitsJoined = fruits.reduce((acc, curr, idx) => {
+        return idx === 0 ? curr : acc + ", " + curr;
+        }, "");
+        console.log("35. Concatenated strings:", fruitsJoined);
+
+        /**
+         * 36. Count Occurrences: Count occurrences of each word in an array.
+         */
+        const words = ["a", "b", "a", "c", "b"];
+        const wordCounts = words.reduce((acc, word) => {
+        acc[word] = (acc[word] || 0) + 1;
+        return acc;
+        }, {});
+        console.log("36. Word occurrences:", wordCounts);
+
+        /**
+         * 37. Max Number: Find the largest number in nums using reduce.
+         */
+        const maxNum = nums.reduce((max, curr) => (curr > max ? curr : max), nums[0]);
+        console.log("37. Max number:", maxNum);
+
+        console.log("----------- 8. Object Basics: Creation & Access ------------------------");
+        /**
+         * 38. Person Object: Create an object with basic properties.
+         */
+        const person = {
+        name: "John Doe",
+        age: 30,
+        city: "New York"
+        };
+        console.log("38. Person object:", person);
+
+        /**
+         * 39. Dot Access: Log the name using dot notation.
+         */
+        console.log("39. Person's name (dot notation):", person.name);
+
+        /**
+         * 40. Bracket Access: Log the age using bracket notation.
+         */
+        console.log("40. Person's age (bracket notation):", person["age"]);
+
+        /**
+         * 41. Dynamic Key Access: Access city using a variable key.
+         */
+        const key = "city";
+        console.log("41. Person's city (dynamic key):", person[key]);
+
+        /**
+         * 42. Nested Object Access: Add contact info and access nested email.
+         */
+        person.contact = {
+        email: "john@example.com",
+        phone: "555-0199"
+        };
+        console.log("42. Nested Email:", person.contact.email);
+
+        console.log("------------ 9. Object Basics: Modification & Methods --------------");
+        /**
+         * 43. Add Property: Add a country property to person.
+         */
+        person.country = "USA";
+        console.log("43. Person after adding country:", person);
+
+        /**
+         * 44. Update Property: Change person's age.
+         */
+        person.age = 35;
+        console.log("44. Person after updating age:", person);
+
+        /**
+         * 45. Delete Property: Delete the city property from person.
+         */
+        delete person.city;
+        console.log("45. Person after deleting city:", person);
+
+        /**
+         * 46. Object Method: Add a greet method to person.
+         */
+        person.greet = function() {
+        console.log("46. Hello from John Doe!");
+        };
+        person.greet();
+
+        /**
+         * 47. this in Method: Modify greet method to use this.name.
+         */
+        person.greet = function() {
+        console.log(`47. Hello from ${this.name}!`);
+        };
+        person.greet();
+
+        console.log("------------ 10. JSON: Parse & Stringify --------------");
+        /**
+         * 48. Object to JSON: Convert person object to a JSON string.
+         * Note: Functions (methods like greet) are excluded from JSON.
+         */
+        const personJSON = JSON.stringify(person);
+        console.log("48. JSON String:", personJSON);
+        console.log("    Typeof personJSON:", typeof personJSON);
+
+        /**
+         * 49. JSON to Object: Parse the JSON string back into a new object.
+         */
+        const parsedPerson = JSON.parse(personJSON);
+        console.log("49. Parsed Object:", parsedPerson);
+
+        /**
+         * 50. Invalid JSON: Attempt to parse an invalid JSON string and handle the error.
+         */
+        const invalidJSON = '{"name": "test", age: 30}'; // Error: key 'age' is not quoted
+        try {
+        console.log("50. Attempting to parse invalid JSON...");
+        JSON.parse(invalidJSON);
+        } catch (error) {
+        console.log("    Caught expected error:", error.message);
+        }
+
+    </script>
+</body>
+</html>
